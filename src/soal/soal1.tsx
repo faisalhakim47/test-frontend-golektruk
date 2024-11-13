@@ -67,17 +67,18 @@ const Solusi1 = () => {
     // Update posisi ke terakhir, dan reset state drag
     const handleMouseUp = (event: unknown) => {
       assertInstanceOf(event, MouseEvent);
+      if (dragState.isDragging) {
+        setTop(dragState.top + dragState.movementY);
+        setLeft(dragState.left + dragState.movementX);
 
-      setTop(dragState.top + dragState.movementY);
-      setLeft(dragState.left + dragState.movementX);
-
-      setMovementY(0);
-      setMovementX(0);
-      dragState.isDragging = false;
-      dragState.startY = 0;
-      dragState.startX = 0;
-      dragState.movementY = 0;
-      dragState.movementX = 0;
+        setMovementY(0);
+        setMovementX(0);
+        dragState.isDragging = false;
+        dragState.startY = 0;
+        dragState.startX = 0;
+        dragState.movementY = 0;
+        dragState.movementX = 0;
+      }
     };
 
     document.addEventListener('mousemove', handleMouseMove);
