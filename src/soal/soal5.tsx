@@ -14,7 +14,7 @@ const Soal5 = () => {
    */
 
   const locationHash = useLocationHash();
-  const isModalOpen = locationHash.includes('modal');
+  const isModalOpen = locationHash.includes("modal");
 
   const handleBackButton = useCallback((event: SyntheticEvent) => {
     if (isModalOpen) {
@@ -27,7 +27,7 @@ const Soal5 = () => {
   return (
     <>
       <div style={{ margin: "1rem" }}>
-        <Modal />
+        <Modal id="modal" />
         <a
           href="#modal"
           style={{ padding: "2px 4px", background: "white" }}
@@ -49,16 +49,20 @@ const Soal5 = () => {
   );
 };
 
-const Modal = () => {
+const Modal = ({ id }: { id: string }) => {
   const modalRoot = document.getElementById("modal-root");
 
   const locationHash = useLocationHash();
-  const isModalOpen = locationHash.includes('modal');
+  const isModalOpen = locationHash.includes(id);
 
   if (!modalRoot) return <></>;
 
   return ReactDOM.createPortal(
-    <dialog open={isModalOpen} style={{ background: "#8f9cb0", padding: "3rem", position: "fixed", margin: "6rem" }}>
+    <dialog
+      id={id}
+      open={isModalOpen}
+      style={{ background: "#8f9cb0", padding: "3rem", position: "fixed", margin: "6rem" }}
+    >
       <div>This is modal</div>
     </dialog>,
     modalRoot
