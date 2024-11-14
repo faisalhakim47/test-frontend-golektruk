@@ -102,6 +102,8 @@ function Soal2() {
               value={inputValue}
               onInput={handleInputOnInput}
               onFocus={handleInputOnFocus}
+              aria-controls="countrySelectList"
+              aria-expanded={openComboBox}
               style={{
                 backgroundColor: "white",
                 padding: "8px",
@@ -117,6 +119,9 @@ function Soal2() {
             >
               <button
                 type="button"
+                tabIndex={-1}
+                aria-controls="countrySelectList"
+                aria-expanded={openComboBox}
                 style={{
                   position: "absolute",
                   top: 0,
@@ -130,6 +135,7 @@ function Soal2() {
             </div>
           </div>
           <div
+            id="countrySelectList"
             style={{
               position: "relative",
               display: openComboBox ? "block" : "none",
@@ -137,6 +143,7 @@ function Soal2() {
           >
             <ul
               role="listbox"
+              aria-label="Countries"
               style={{
                 position: "absolute",
                 top: "6px",
@@ -159,6 +166,7 @@ function Soal2() {
                     setOpenComboBox(false);
                   }}
                   data-index={index}
+                  aria-selected={item.country === inputValue}
                   style={{
                     padding: "4px 8px",
                     cursor: "pointer",
